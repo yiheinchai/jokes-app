@@ -1,13 +1,38 @@
-async function getJokes() {
-  const rawJoke = await fetch("https://api.chucknorris.io/jokes/random");
-  const jsonJoke = await rawJoke.json();
-  const newJoke = jsonJoke.value;
-  console.log(newJoke);
-  insertJoke(newJoke);
+async function getJSON(url) {
+  try {
+    const rawQuote = await fetch(url);
+    const jsonQuote = await rawQuote.json();
+    if (!rawQuote.ok) throw new Error(`Joke not found 😭`);
+    return jsonQuote;
+  } catch (err) {
+    throw err;
+  }
 }
 
-function insertJoke(joke) {
-  document.querySelector(".jokes_container").insertAdjacentHTML("beforeend", `${joke}`);
+async function getJoke() {
+  try {
+    const jsonJoke = await getJSON("https://api.chucknorris.io/jokes/random");
+    const newJoke = jsonJoke.value;
+    insertQuote(newJoke);
+  } catch (err) {
+    alert(err);
+    console.error(err);
+  }
 }
 
-getJokes();
+async function getAdvice() {
+  const rawAdvice = await fetch("https://api.adviceslip.com/advice");
+  const jsonAdvice = await rawAdvice.json();
+  const { advice: newAdvice } = jsonAdvice.slip;
+  console.log(newAdvice);
+  insertQuote(newAdvice);
+}
+
+function insertQuote(quote) {
+  document
+    .querySelector(".quotes_container")
+    .insertAdjacentHTML("beforeend", `<div>${quote}</div>`);
+}
+
+getJoke();
+getAdvice();
