@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 * {
   font-family: "Noto Sans";
+  margin: 0;
 }
 
 .header {
@@ -12,6 +13,8 @@
 .header__logo, .header__nav {
   display: flex;
   justify-content: space-around;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .header__logo__item, .header__nav__item {
   margin-left: 7rem;
@@ -87,6 +90,58 @@ main {
 .detail {
   background-color: #d3d7ff;
   grid-area: product_detail;
+  display: flex;
+  flex-flow: column wrap;
+  grid-template-columns: repeat(12, 1fr);
+}
+.detail__title {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #b6bcff;
+}
+.detail__logo-img {
+  border-radius: 50%;
+}
+.detail__name {
+  font-size: 4rem;
+  font-weight: 400;
+  margin: 0;
+}
+.detail__tagline {
+  font-weight: 400;
+}
+.detail__topics {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+.detail__topics__element {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  background-color: #c7d0ff;
+  border: 2px solid #478ef8;
+}
+.detail__topics__element:first-of-type {
+  margin-left: 2rem;
+}
+.detail__description {
+  display: grid;
+  justify-content: space-around;
+  grid-template-areas: "screenshots maker" "screenshots maker" "screenshots hunt";
+}
+.detail__maker {
+  grid-area: maker;
+}
+.detail__screenshots {
+  grid-area: screenshots;
+}
+.detail__hunt {
+  grid-area: hunt;
 }
 
 /*# sourceMappingURL=style.css.map */
