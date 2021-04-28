@@ -7,10 +7,13 @@ import ProductListView from "./productListView.js";
 
 async function controlProductList(e) {
   e.preventDefault();
-  const apiURL = document.querySelector(".query_string").value;
-  model.getProduct(apiURL);
+  await model.getProductList();
+
+  ProductListView.render(model.state.productRandom);
 }
 
 const init = function () {
   ProductListView.addHandlerRender(controlProductList);
 };
+
+init();

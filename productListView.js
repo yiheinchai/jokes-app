@@ -3,6 +3,8 @@ class ProductListView {
 
   render(data) {
     this._data = data;
+    const markup = this.generateMarkup();
+    document.querySelector(".product_list").insertAdjacentHTML("beforeend", markup);
   }
 
   addHandlerRender(handler) {
@@ -10,11 +12,15 @@ class ProductListView {
   }
 
   generateMarkup() {
-    this._data.map((quote) => {
-      return `
-            
+    return this._data
+      .map((product) => {
+        return `
+        <div class="product_list_item">
+        <a class="product_list_item_link" href="${product.url}"><img width="40px" height="40px" src="${product.img}">${product.productName}</a>
+        </div>
             `;
-    });
+      })
+      .join("");
   }
 }
 

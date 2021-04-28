@@ -1,5 +1,5 @@
 export const state = {
-  quote: {},
+  productRandom: {},
 };
 
 async function getJSON(url) {
@@ -28,7 +28,7 @@ async function getJSONAuthentication(url) {
         Authorization: "Bearer Msind3P7wu1bkZpH7FbyFdYbKsdzMQw1zKIJsr-0Y44",
       },
     };
-    const rawProduct = await fetch(url, sendObject);
+    const rawProduct = await fetch(url, getAuthentication);
     console.log(rawProduct);
     const jsonProduct = await rawProduct.json();
     if (!rawProduct.ok) throw new Error(`Joke not found 😭`);
@@ -38,40 +38,30 @@ async function getJSONAuthentication(url) {
   }
 }
 
-export async function getProduct(apiURL) {
+const randomNumberGenerator = function () {
+  return Math.floor(Math.random() * 2700) + 1;
+};
+
+export async function getProductList() {
   try {
-    const jsonProduct = await getJSONAuthentication(`https://api.producthunt.com/v1/${apiURL}`);
-    const newProduct = jsonProduct.value;
-    insertQuote(newProduct);
+    const jsonProduct = await getJSONAuthentication(
+      `https://api.producthunt.com/v1/posts?days_ago=${randomNumberGenerator()}`
+    );
+    state.productRandom = jsonProduct.posts.map((product) => {
+      return {
+        productName: product.name,
+        id: product.id,
+        date: product.created_at,
+        url: product.discussion_url,
+        tagline: product.tagline,
+        img: product.thumbnail.image_url,
+        creator: product.user.name,
+      };
+    });
     console.log(jsonProduct);
+    console.log(state);
   } catch (err) {
     alert(err);
     console.error(err);
   }
-}
-
-async function getJoke() {
-  try {
-    const jsonJoke = await getJSON("https://api.chucknorris.io/jokes/random");
-    const newJoke = jsonJoke.value;
-    insertQuote(newJoke);
-  } catch (err) {
-    alert(err);
-    console.error(err);
-  }
-}
-
-export async function getAdvice() {
-  try {
-    const jsonAdvice = await getJSON("https://api.adviceslip.com/advice");
-    const { advice: newAdvice } = jsonAdvice.slip;
-    const { id } = jsonAdvice.slip;
-    state.quote[id] = newAdvice;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-function insertQuote(quote) {
-  document.querySelector(".product_list").insertAdjacentHTML("beforeend", `<div>${quote}</div>`);
 }

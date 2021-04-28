@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
 * {
   font-family: "Noto Sans";
 }
@@ -21,21 +22,23 @@ header > div > * {
 
 main {
   display: grid;
-  grid-template-areas: "product_search product_search product_search product_search product_bookmark product_bookmark" "product_list product_detail product_detail product_detail product_detail product_detail";
+  grid-template-areas:
+    "product_search product_search product_search product_search product_bookmark product_bookmark"
+    "product_list product_detail product_detail product_detail product_detail product_detail";
 }
 
 .product_search {
-  background-color: #cefdfd;
+  background-color: rgb(206, 253, 253);
   grid-area: product_search;
 }
 
 .product_bookmark {
-  background-color: #fcd6ef;
+  background-color: rgb(252, 214, 239);
   grid-area: product_bookmark;
 }
 
 .product_list {
-  background-color: #c7ffe0;
+  background-color: rgb(199, 255, 224);
   grid-area: product_list;
   display: grid;
   grid-template-rows: repeat(30, minmax(50px, auto));
@@ -51,7 +54,7 @@ main {
 }
 
 .product_detail {
-  background-color: #d3d7ff;
+  background-color: rgb(211, 215, 255);
   grid-area: product_detail;
 }
 
@@ -68,5 +71,3 @@ main {
   text-decoration: none;
   color: black;
 }
-
-/*# sourceMappingURL=style.css.map */
