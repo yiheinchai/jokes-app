@@ -1,2 +1,2 @@
-# jokes-app
- generates jokes for fun!
+# product_bookmark
+ generates products for fun!
