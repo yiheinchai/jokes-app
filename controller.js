@@ -1,13 +1,16 @@
 import * as model from "./model.js";
+import ProductListView from "./productListView.js";
 
-function generateQuoteList(listLength) {
-  Array.from({ length: listLength }, () => {
-    model.getAdvice();
-  });
+// function generateProductList() {
+//   model.getProduct();
+// }
+
+async function controlProductList(e) {
+  e.preventDefault();
+  const apiURL = document.querySelector(".query_string").value;
+  model.getProduct(apiURL);
 }
 
-async function controlQuotes() {
-  generateQuoteList(20);
-}
-
-function init() {}
+const init = function () {
+  ProductListView.addHandlerRender(controlProductList);
+};

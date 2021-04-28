@@ -12,14 +12,14 @@ async function getJSON(url) {
     throw err;
   }
 }
-async function sendJSON(url) {
+async function getJSONAuthentication(url) {
   try {
     // const sendBody = {
     //   client_id: "e2a1a3259b4e13eb324bed61340b546664670e648a62d7d36e59cad11e394db7",
     //   client_secret: "ba2ab029005f6468580b52e0c5e3a558f327a15749fd3475351a256fc013d259",
     //   grant_type: "client_credentials",
     // };
-    const sendObject = {
+    const getAuthentication = {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -28,19 +28,19 @@ async function sendJSON(url) {
         Authorization: "Bearer Msind3P7wu1bkZpH7FbyFdYbKsdzMQw1zKIJsr-0Y44",
       },
     };
-    const rawQuote = await fetch(url, sendObject);
-    console.log(rawQuote);
-    const jsonQuote = await rawQuote.json();
-    if (!rawQuote.ok) throw new Error(`Joke not found 😭`);
-    return jsonQuote;
+    const rawProduct = await fetch(url, sendObject);
+    console.log(rawProduct);
+    const jsonProduct = await rawProduct.json();
+    if (!rawProduct.ok) throw new Error(`Joke not found 😭`);
+    return jsonProduct;
   } catch (err) {
     throw err;
   }
 }
 
-async function getProduct() {
+export async function getProduct(apiURL) {
   try {
-    const jsonProduct = await sendJSON("https://api.producthunt.com/v1/posts");
+    const jsonProduct = await getJSONAuthentication(`https://api.producthunt.com/v1/${apiURL}`);
     const newProduct = jsonProduct.value;
     insertQuote(newProduct);
     console.log(jsonProduct);
@@ -49,8 +49,6 @@ async function getProduct() {
     console.error(err);
   }
 }
-
-getProduct();
 
 async function getJoke() {
   try {
