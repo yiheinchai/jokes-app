@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+* {
+  font-family: "Noto Sans";
+}
+
+header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+header > div {
+  display: flex;
+  justify-content: space-around;
+}
+
+header > div > * {
+  margin-left: 7rem;
+}
+
+main {
+  display: grid;
+  grid-template-areas:
+    "product_search product_search product_search product_search product_bookmark product_bookmark"
+    "product_list product_list product_detail product_detail product_detail product_detail";
+}
+
+.product_search {
+  background-color: aqua;
+  grid-area: product_search;
+}
+
+.product_bookmark {
+  background-color: rgb(255, 0, 170);
+  grid-area: product_bookmark;
+}
+
+.product_list {
+  background-color: rgb(0, 255, 115);
+  grid-area: product_list;
+}
+.product_detail {
+  background-color: rgb(108, 118, 206);
+  grid-area: product_detail;
+}

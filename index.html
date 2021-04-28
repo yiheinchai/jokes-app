@@ -4,14 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Quotes App</title>
-    <script defer type="module" src="script.js"></script>
+    <title>Product Bookmark</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer type="module" src="controller.js"></script>
   </head>
 
   <body>
-    <div class="container">
-      <h1>Quotes go here!</h1>
-      <div class="quotes_container"></div>
-    </div>
+    <header>
+      <h1>Product Bookmark</h1>
+      <div>
+        <h5>About</h5>
+        <h5>Donate</h5>
+      </div>
+    </header>
+    <main>
+      <div class="product_search">
+        <form>
+          <label for="query">What is your query?</label>
+          <input type="text" name="query" required />
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+      <div class="product_bookmark">
+        <div>Bookmarks</div>
+      </div>
+      <div class="product_list">asdf</div>
+      <div class="product_detail">asdfasd</div>
+    </main>
   </body>
 </html>
