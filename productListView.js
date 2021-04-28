@@ -4,20 +4,27 @@ class ProductListView {
   render(data) {
     this._data = data;
     const markup = this.generateMarkup();
-    document.querySelector(".product_list").insertAdjacentHTML("beforeend", markup);
+    document.querySelector(".list").insertAdjacentHTML("beforeend", markup);
   }
 
   addHandlerRender(handler) {
-    document.querySelector(".submit_query").addEventListener("click", handler);
+    document.querySelector(".search__submit").addEventListener("click", handler);
   }
 
   generateMarkup() {
     return this._data
       .map((product) => {
         return `
-        <div class="product_list_item">
-        <a class="product_list_item_link" href="${product.url}"><img width="40px" height="40px" src="${product.img}">${product.productName}</a>
-        </div>
+        <a href="#${product.id}" class="list__item"
+          ><img
+            class="list__icon"
+            src="${product.img}"
+          />
+          <div class="list__data">
+            <h4 class="list__title">${product.productName}</h4>
+            <div class="list__tagline">${product.tagline}</div>
+          </div>
+        </a>
             `;
       })
       .join("");
