@@ -25,7 +25,7 @@ async function sendJSON(url) {
         Accept: "application/json",
         "Content-Type": "application/json",
         Host: "api.producthunt.com",
-        Authorization: "Msind3P7wu1bkZpH7FbyFdYbKsdzMQw1zKIJsr-0Y44",
+        Authorization: "Bearer Msind3P7wu1bkZpH7FbyFdYbKsdzMQw1zKIJsr-0Y44",
       },
     };
     const rawQuote = await fetch(url, sendObject);
