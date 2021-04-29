@@ -39,11 +39,6 @@ main {
   grid-area: product_search;
 }
 
-.bookmark {
-  background-color: rgb(252, 214, 239);
-  grid-area: product_bookmark;
-}
-
 .list {
   background-color: rgb(199, 255, 224);
   grid-area: product_list;
@@ -116,6 +111,7 @@ main {
   &__title {
     padding-top: 3rem;
     padding-bottom: 3rem;
+    text-align: center;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -124,7 +120,7 @@ main {
   }
 
   &__logo-img {
-    border-radius: 50%;
+    width: 60%;
   }
 
   &__name {
@@ -156,7 +152,8 @@ main {
   }
   &__description {
     display: grid;
-    justify-content: space-around;
+    gap: 2rem;
+    padding: 2rem;
     grid-template-areas:
       "screenshots maker"
       "screenshots maker"
@@ -169,9 +166,48 @@ main {
 
   &__screenshots {
     grid-area: screenshots;
+
+    &__ {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__hunt {
     grid-area: hunt;
+  }
+
+  &__maker__info {
+    display: flex;
+    flex-flow: row;
+    padding: 0.5rem 1rem;
+
+    &-text {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.btn-bookmark {
+  border: none;
+  background-color: rgb(199, 222, 255);
+}
+
+.bookmark {
+  background-color: rgb(252, 214, 239);
+  grid-area: product_bookmark;
+
+  &__list {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: rgb(252, 214, 239);
+  }
+
+  &__nav:hover + &__list,
+  &__list:hover {
+    visibility: visible;
+    opacity: 1;
   }
 }

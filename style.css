@@ -31,11 +31,6 @@ main {
   grid-area: product_search;
 }
 
-.bookmark {
-  background-color: #fcd6ef;
-  grid-area: product_bookmark;
-}
-
 .list {
   background-color: #c7ffe0;
   grid-area: product_list;
@@ -97,6 +92,7 @@ main {
 .detail__title {
   padding-top: 3rem;
   padding-bottom: 3rem;
+  text-align: center;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -104,7 +100,7 @@ main {
   background-color: #b6bcff;
 }
 .detail__logo-img {
-  border-radius: 50%;
+  width: 60%;
 }
 .detail__name {
   font-size: 4rem;
@@ -131,7 +127,8 @@ main {
 }
 .detail__description {
   display: grid;
-  justify-content: space-around;
+  gap: 2rem;
+  padding: 2rem;
   grid-template-areas: "screenshots maker" "screenshots maker" "screenshots hunt";
 }
 .detail__maker {
@@ -140,8 +137,41 @@ main {
 .detail__screenshots {
   grid-area: screenshots;
 }
+.detail__screenshots__ {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
 .detail__hunt {
   grid-area: hunt;
+}
+.detail__maker__info {
+  display: flex;
+  flex-flow: row;
+  padding: 0.5rem 1rem;
+}
+.detail__maker__info-text {
+  margin-left: 1rem;
+}
+
+.btn-bookmark {
+  border: none;
+  background-color: #c7deff;
+}
+
+.bookmark {
+  background-color: #fcd6ef;
+  grid-area: product_bookmark;
+}
+.bookmark__list {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background-color: #fcd6ef;
+}
+.bookmark__nav:hover + .bookmark__list, .bookmark__list:hover {
+  visibility: visible;
+  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */

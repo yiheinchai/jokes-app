@@ -3,6 +3,7 @@ class ProductListView {
 
   render(data) {
     this._data = data;
+    document.querySelector(".list").innerHTML = "";
     const markup = this.generateMarkup();
     document.querySelector(".list").insertAdjacentHTML("beforeend", markup);
   }

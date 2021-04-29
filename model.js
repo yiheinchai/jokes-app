@@ -1,5 +1,7 @@
 export const state = {
-  productRandom: {},
+  productList: {},
+  bookmarks: [],
+  productCurrent: {},
 };
 
 async function getJSON(url) {
@@ -47,15 +49,24 @@ export async function getProductList() {
     const jsonProduct = await getJSONAuthentication(
       `https://api.producthunt.com/v1/posts?days_ago=${randomNumberGenerator()}`
     );
-    state.productRandom = jsonProduct.posts.map((product) => {
+    state.productList = jsonProduct.posts.map((product) => {
       return {
         productName: product.name,
         id: product.id,
         date: product.created_at,
         url: product.discussion_url,
         tagline: product.tagline,
+        img_large: product.user.image_url["264px"],
         img: product.thumbnail.image_url,
-        creator: product.user.name,
+        maker_name: product.user.name,
+        maker_title: product.user.headline,
+        maker_profile_url: product.user.profile_url,
+        twitter: product.user.twitter_username,
+        username: product.user.username,
+        comments: product.comments_count,
+        upvotes: product.votes_count,
+        screenshot: product.screenshot_url["300px"],
+        topics: product.topics.map((obj) => obj.name),
       };
     });
     console.log(jsonProduct);
@@ -64,4 +75,21 @@ export async function getProductList() {
     alert(err);
     console.error(err);
   }
+}
+
+export function loadProduct(id) {
+  state.productCurrent = state.productList.find((ele) => ele.id == id);
+}
+
+export function addBookmark() {
+  state.productCurrent.bookmark = true;
+  state.bookmarks.push(state.productCurrent);
+}
+
+export function deleteBookmark() {
+  const id = state.productCurrent.id;
+  state.productCurrent.bookmark = false;
+  state.bookmarks.forEach((obj, i) => {
+    if (obj.id == id) state.bookmarks.splice(i, 1);
+  });
 }
