@@ -3,9 +3,13 @@ class BookmarksView {
 
   render(data) {
     this._data = data;
-    document.querySelector(".bookmark__list").innerHTML = "";
+    document.querySelector(".bookmark").innerHTML = "";
     const markup = this.generateMarkup();
-    document.querySelector(".bookmark__list").insertAdjacentHTML("beforeend", markup);
+    document.querySelector(".bookmark").insertAdjacentHTML("beforeend", markup);
+  }
+
+  addHandlerRender(handler) {
+    window.addEventListener("load", handler);
   }
 
   generateMarkup() {

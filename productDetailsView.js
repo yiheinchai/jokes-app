@@ -10,35 +10,37 @@ class ProductDetailsView {
   }
 
   addHandlerBookmarks(handler) {
-    document.querySelector(".btn-bookmark").addEventListener("click", handler);
+    document.querySelector(".detail").addEventListener("click", handler);
   }
 
   generateMarkup() {
-    return `<div class="detail__title">
+    return `
+    <div class="detail__title">
       <div class="detail__logo">
         <img
           class="detail__logo-img"
           src="${this._data.img}"
         />
       </div>
-      <h2 class="detail__name">${this._data.productName} <span><a href="#${
-      this._data.id
-    }" class="btn-bookmark"> ${
-      this._data.bookmark
-        ? `<img
+      <div class="detail__name">
+      <h2 class="detail__name-text">${this._data.productName}</h2>
+      <button class="btn-bookmark"> ${
+        this._data.bookmark
+          ? `<img
               width="30px"
               height="30px"
               src="https://static.thenounproject.com/png/809340-200.png"
             >
           `
-        : `
+          : `
             <img
               width="30px"
               height="30px"
               src="https://static.thenounproject.com/png/1591085-200.png"
             >
           `
-    }</button> </a></h2>
+      }</button>
+      </div>
       <h4 class="detail__tagline">${this._data.tagline}</h4>
       <div class="detail__topics">
         <h4 class="detail__topics__title">Topics</h4>
@@ -70,7 +72,7 @@ class ProductDetailsView {
       <div class="detail__hunt">
         <div class="detail__hunt__info">
           <h5 class="detail__hunt__info-title">Comments</h5>
-          <div class="detail__hunt__info-number">${this._data.thiscomments}</div>
+          <div class="detail__hunt__info-number">${this._data.comments}</div>
         </div>
         <div class="detail__hunt__info">
           <h5 class="detail__hunt__info-title">Upvotes</h5>

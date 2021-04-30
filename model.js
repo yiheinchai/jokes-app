@@ -81,9 +81,15 @@ export function loadProduct(id) {
   state.productCurrent = state.productList.find((ele) => ele.id == id);
 }
 
+export function loadBookmark(id) {
+  state.productCurrent = state.bookmarks.find((ele) => ele.id == id);
+}
+
 export function addBookmark() {
   state.productCurrent.bookmark = true;
   state.bookmarks.push(state.productCurrent);
+  console.log(state.bookmarks);
+  persistBookmarks();
 }
 
 export function deleteBookmark() {
@@ -92,4 +98,16 @@ export function deleteBookmark() {
   state.bookmarks.forEach((obj, i) => {
     if (obj.id == id) state.bookmarks.splice(i, 1);
   });
+  persistBookmarks();
 }
+
+function persistBookmarks() {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+}
+
+export const init = function () {
+  const storage = localStorage.getItem("bookmarks");
+  if (storage) state.bookmarks = JSON.parse(storage);
+};
+
+init();

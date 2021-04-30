@@ -10,27 +10,30 @@
   </head>
 
   <body>
-    <header class="header">
-      <h1 class="header__logo">Product Bookmark</h1>
-      <div class="header__nav">
-        <h5 class="header__nav__item">About</h5>
-        <h5 class="header__nav__item">Donate</h5>
-      </div>
-    </header>
-    <main>
-      <div class="search">
-        <!-- <form> -->
-        <!-- <label for="query">What is your query?</label>
-        <input type="text" class="query_string" name="query" /> -->
-        <input type="submit" class="search__submit" value="Generate New Products!" />
-        <!-- </form> -->
-      </div>
-      <div class="bookmark">
-        <div class="bookmark__nav">Bookmarks</div>
-        <div class="bookmark__list"></div>
-      </div>
+    <div class="container">
+      <header class="header">
+        <img class="header__logo" src="logo.png" alt="logo" />
+        <form class="search">
+          <input
+            class="search__field"
+            type="text"
+            placeholder="Search for your favourite products..."
+          />
+          <button class="btn search__btn">Search</button>
+        </form>
+        <button class="header__generate btn">Generate</button>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__item"><button class="nav__btn header__filter">Filter</button></li>
+            <li class="nav__item">
+              <button class="nav__btn bookmark__btn">Bookmarks</button>
+              <div class="bookmark"></div>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <div class="list"></div>
       <div class="detail"></div>
-    </main>
+    </div>
   </body>
 </html>

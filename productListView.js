@@ -9,7 +9,7 @@ class ProductListView {
   }
 
   addHandlerRender(handler) {
-    document.querySelector(".search__submit").addEventListener("click", handler);
+    document.querySelector(".header__generate").addEventListener("click", handler);
   }
 
   generateMarkup() {

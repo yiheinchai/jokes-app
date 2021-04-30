@@ -17,22 +17,28 @@ async function controlProductList(e) {
 async function controlProductDetails() {
   const id = window.location.hash.slice(1);
   model.loadProduct(id);
+  if (!model.state.productCurrent) model.loadBookmark(id);
   ProductDetailsView.render(model.state.productCurrent);
-  ProductDetailsView.addHandlerBookmarks(controlBookmarks);
 }
 
-function controlBookmarks() {
-  console.log(model.state.productCurrent.bookmark);
+function controlBookmarks(e) {
+  if (!e.target.closest(".btn-bookmark")) return;
   if (model.state.productCurrent.bookmark) model.deleteBookmark();
   else model.addBookmark();
-  console.log(model.state.productCurrent.bookmark);
   ProductDetailsView.render(model.state.productCurrent);
+  BookmarksView.render(model.state.bookmarks);
+}
+
+function controlReloadBookmarks() {
   BookmarksView.render(model.state.bookmarks);
 }
 
 const init = function () {
   ProductListView.addHandlerRender(controlProductList);
   ProductDetailsView.addHandlerRender(controlProductDetails);
+  ProductDetailsView.addHandlerBookmarks(controlBookmarks);
+  console.log(model.state.bookmarks);
+  BookmarksView.addHandlerRender(controlReloadBookmarks);
   //   BookmarksView.addHandlerRender(controlViewBookmarks);
 };
 
