@@ -77,13 +77,13 @@ body {
   font-family: inherit;
   color: inherit;
   font-size: 1.7rem;
-  width: 30rem;
+  width: 25rem;
 }
 .search__field:focus {
   outline: none;
 }
 .search__field::placeholder {
-  color: #d6e9d3;
+  color: #586456;
 }
 .search__field:hover {
   transform: scale(1.05);
@@ -126,8 +126,7 @@ body {
   background-color: #f6fff6;
 }
 
-.btn {
-  background-image: linear-gradient(to bottom right, #ddffbc, #52734d);
+.btn__info, .btn__nav {
   border-radius: 10rem;
   border: none;
   text-transform: uppercase;
@@ -138,10 +137,24 @@ body {
   transition: all 0.2s;
 }
 
-.btn {
+.btn__nav {
   padding: 1.5rem 3rem;
   font-size: 1.5rem;
   font-weight: 600;
+  background-image: linear-gradient(to bottom right, #ddffbc, #52734d);
+}
+.btn__info {
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: #ddffbc;
+  color: #404b3f;
+  text-decoration: none;
+  font-family: inherit;
+  max-width: 13rem;
+}
+.btn__info:hover {
+  background-color: #eef5ed;
 }
 
 .list {
@@ -201,6 +214,7 @@ body {
   grid-area: detail;
   display: flex;
   flex-flow: column wrap;
+  padding: 2rem;
   grid-template-columns: repeat(12, 1fr);
 }
 .detail__title {
@@ -214,6 +228,8 @@ body {
 }
 .detail__logo-img {
   width: 60%;
+  border-radius: 7%;
+  margin-bottom: 3rem;
 }
 .detail__name {
   display: flex;
@@ -223,10 +239,13 @@ body {
   font-size: 4rem;
   font-weight: 400;
   margin: 0;
-  color: #404b3f;
+  color: #586456;
 }
 .detail__tagline {
   font-weight: 400;
+  font-size: 2rem;
+  color: #8e968c;
+  margin: 0.5rem 0;
 }
 .detail__topics {
   display: flex;
@@ -248,29 +267,75 @@ body {
   display: grid;
   gap: 2rem;
   padding: 2rem;
-  grid-template-areas: "screenshots maker" "screenshots maker" "screenshots hunt";
+  grid-template-areas: "product maker" "product maker" "screenshots screenshots";
 }
 .detail__maker {
   grid-area: maker;
+  display: flex;
+  flex-flow: column;
+  font-size: 1.2rem;
 }
 .detail__screenshots {
   grid-area: screenshots;
 }
-.detail__screenshots__ {
+.detail .screenshot__img {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  max-width: 100%;
 }
-.detail__hunt {
-  grid-area: hunt;
+.detail__product {
+  grid-area: product;
+  display: flex;
+  flex-flow: column;
+  font-size: 1.2rem;
+}
+.detail__product > * {
+  margin-bottom: 1rem;
+}
+.detail__product > *:last-child {
+  margin-top: 1rem;
+}
+.detail__product__metrics {
+  display: flex;
+}
+.detail__product__info {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 1px solid #8e968c;
+  background: #d6e9d3;
+  border-radius: 1rem;
 }
 .detail__maker__info {
   display: flex;
   flex-flow: row;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 0rem;
 }
 .detail__maker__info-text {
   margin-left: 1rem;
+}
+
+.title-large {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #404b3f;
+}
+.title-medium {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #8e968c;
+}
+.title-name {
+  font-size: 1.5rem;
+  color: #8e968c;
+}
+.title-small {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #404b3f;
 }
 
 .btn-bookmark {
@@ -285,7 +350,6 @@ body {
 .bookmark {
   background: #f6fff6;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-sizing: border-box;
   backdrop-filter: blur(25px);
   border-radius: 0 0 2rem 2rem;
   width: 40rem;
@@ -295,6 +359,48 @@ body {
   opacity: 0;
 }
 .bookmark__btn:hover + .bookmark, .bookmark:hover {
+  visibility: visible;
+  opacity: 1;
+}
+
+.filter {
+  background: #f6fff6;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(25px);
+  border-radius: 0 0 2rem 2rem;
+  width: 45rem;
+  right: 0;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-flow: column wrap;
+  color: #586456;
+}
+.filter h3 {
+  justify-self: start;
+  font-size: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+.filter__group {
+  display: flex;
+  flex-flow: row wrap;
+}
+.filter__item {
+  font-size: 1.2rem;
+}
+.filter__item:nth-child(2) {
+  margin-left: 2rem;
+}
+.filter__item *:last-child {
+  margin-left: 2rem;
+  border-radius: 8rem;
+  padding: 1rem;
+  border: none;
+  background: #d6e9d3;
+}
+.filter__btn:hover + .filter, .filter:hover, .filter:focus-within {
   visibility: visible;
   opacity: 1;
 }

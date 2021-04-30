@@ -8,7 +8,6 @@ import BookmarksView from "./bookmarksView.js";
 // }
 
 async function controlProductList(e) {
-  e.preventDefault();
   await model.getProductList();
 
   ProductListView.render(model.state.productList);
@@ -16,6 +15,7 @@ async function controlProductList(e) {
 
 async function controlProductDetails() {
   const id = window.location.hash.slice(1);
+  console.log("Product Details activated");
   model.loadProduct(id);
   if (!model.state.productCurrent) model.loadBookmark(id);
   ProductDetailsView.render(model.state.productCurrent);
@@ -33,11 +33,16 @@ function controlReloadBookmarks() {
   BookmarksView.render(model.state.bookmarks);
 }
 
+async function controlSearch() {
+  await model.getSearchedProduct();
+  ProductDetailsView.render(model.state.productCurrent);
+}
+
 const init = function () {
   ProductListView.addHandlerRender(controlProductList);
   ProductDetailsView.addHandlerRender(controlProductDetails);
+  ProductDetailsView.addHandlerSearch(controlSearch);
   ProductDetailsView.addHandlerBookmarks(controlBookmarks);
-  console.log(model.state.bookmarks);
   BookmarksView.addHandlerRender(controlReloadBookmarks);
   //   BookmarksView.addHandlerRender(controlViewBookmarks);
 };

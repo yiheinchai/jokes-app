@@ -1,5 +1,5 @@
 export const state = {
-  productList: {},
+  productList: [],
   bookmarks: [],
   productCurrent: {},
 };
@@ -40,14 +40,74 @@ async function getJSONAuthentication(url) {
   }
 }
 
-const randomNumberGenerator = function () {
-  return Math.floor(Math.random() * 2700) + 1;
+const randomNumberGenerator = function (min, max) {
+  return Math.floor(Math.random() * (max - min)) + min + 1;
 };
+
+function getInputDates() {
+  const startDate = document.querySelector("#start").valueAsNumber
+    ? new Date(document.querySelector("#start").valueAsNumber)
+    : new Date();
+  const endDate = document.querySelector("#end").valueAsNumber
+    ? new Date(document.querySelector("#end").valueAsNumber)
+    : new Date("2013-12-10");
+  return [startDate, endDate];
+}
+
+function getDaysDifference(date1, date2) {
+  if (date1 > date2) {
+    return Math.floor((date1 - date2) / (60 * 60 * 24 * 1000));
+  }
+  if (date2 > date1) {
+    return Math.floor((date2 - date1) / (60 * 60 * 24 * 1000));
+  }
+}
+
+export async function getSearchedProduct() {
+  try {
+    const searchInput = document.querySelector(".search__field").value.split(" ").join("-");
+    console.log(searchInput);
+    const jsonProduct = await getJSONAuthentication(
+      `https://api.producthunt.com/v1/posts/all?search[slug]=${searchInput}`
+    );
+    const [modifiedProduct] = jsonProduct.posts.map((product) => {
+      return {
+        productName: product.name,
+        id: product.id,
+        date: product.created_at,
+        url: product.discussion_url,
+        tagline: product.tagline,
+        img_large: product.user.image_url["264px"],
+        img: product.thumbnail.image_url,
+        maker_name: product.user.name,
+        maker_title: product.user.headline,
+        maker_profile_url: product.user.profile_url,
+        twitter: product.user.twitter_username,
+        username: product.user.username,
+        comments: product.comments_count,
+        upvotes: product.votes_count,
+        screenshot: product.screenshot_url["300px"],
+        topics: product.topics.map((obj) => obj.name),
+      };
+    });
+    state.productCurrent = modifiedProduct;
+  } catch (err) {}
+}
 
 export async function getProductList() {
   try {
+    const [startInputDate, endInputDate] = getInputDates();
+    if (endInputDate > startInputDate)
+      throw new Error("Start date cannot be later than end date! 📅❌");
+    const randomDateMilli = randomNumberGenerator(startInputDate.getTime(), endInputDate.getTime());
+
+    const randomDate = new Date(randomDateMilli);
+
+    const randomDateFormatted = `${randomDate.getFullYear()}-${`${
+      randomDate.getMonth() + 1
+    }`.padStart(2, "0")}-${`${randomDate.getDate()}`.padStart(2, "0")}`;
     const jsonProduct = await getJSONAuthentication(
-      `https://api.producthunt.com/v1/posts?days_ago=${randomNumberGenerator()}`
+      `https://api.producthunt.com/v1/posts?day=${randomDateFormatted}`
     );
     state.productList = jsonProduct.posts.map((product) => {
       return {

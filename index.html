@@ -14,17 +14,28 @@
       <header class="header">
         <img class="header__logo" src="logo.png" alt="logo" />
         <form class="search">
-          <input
-            class="search__field"
-            type="text"
-            placeholder="Search for your favourite products..."
-          />
-          <button class="btn search__btn">Search</button>
+          <input class="search__field" type="text" placeholder="Search for products..." />
+          <button class="btn btn__nav search__btn">Search</button>
         </form>
-        <button class="header__generate btn">Generate</button>
+        <button class="header__generate btn__nav btn">Generate</button>
         <nav class="nav">
           <ul class="nav__list">
-            <li class="nav__item"><button class="nav__btn header__filter">Filter</button></li>
+            <li class="nav__item">
+              <button class="nav__btn filter__btn">Filter</button>
+              <div class="filter">
+                <h3>Filters</h3>
+                <div class="filter__group">
+                  <div class="filter__item">
+                    <label for="start">Start Date</label>
+                    <input id="start" class="filter__date" type="date" />
+                  </div>
+                  <div class="filter__item">
+                    <label for="end">End Date</label>
+                    <input id="end" class="filter__date" type="date" />
+                  </div>
+                </div>
+              </div>
+            </li>
             <li class="nav__item">
               <button class="nav__btn bookmark__btn">Bookmarks</button>
               <div class="bookmark"></div>
