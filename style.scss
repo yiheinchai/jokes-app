@@ -12,6 +12,7 @@ $color-grey-light-4: #ecf7ec; // Light text (placeholder)
 $color-grey-dark-1: #404b3f; // Normal text
 $color-grey-dark-2: #586456; // Lighter text
 $color-grey-dark-3: #8e968c; // Lighter text
+$color-grey-dark-4: #677564; // Lighter text
 
 // $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
 $gradient: linear-gradient(to bottom right, $color-grad-1, $color-grad-2);
@@ -405,7 +406,7 @@ body {
   &-medium {
     font-size: 1.5rem;
     font-weight: 600;
-    color: $color-grey-dark-3;
+    color: $color-grey-dark-4;
   }
   &-name {
     font-size: 1.5rem;
